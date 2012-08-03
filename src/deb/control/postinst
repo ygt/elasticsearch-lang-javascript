@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+/usr/share/elasticsearch/bin/plugin -url /usr/share/elasticsearch-lang-javascript -install lang-javascript
+
+if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+	invoke-rc.d elasticsearch restart || true
+else
+	/etc/init.d/elasticsearch restart || true
+fi
